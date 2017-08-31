@@ -3,7 +3,7 @@
     mario_in_air = Image("mario_in_air.png",150,150,True);
     if level == 0 :
         # Intro Screen Code
-        windows.display()
+        Windows_10_desktop.display()
         mario_standing.display()
     
  
