@@ -5,6 +5,7 @@ while gameOver == False :
     if level == 0 :
         # Intro Screen Code
         windows.display()
+        marioair.display()
     
  
         pygame.display.update()
