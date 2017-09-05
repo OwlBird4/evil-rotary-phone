@@ -1,0 +1,37 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red0\green0\blue0;\red28\green0\blue207;
+\red196\green26\blue22;}
+{\*\expandedcolortbl;;\csgenericrgb\c66500\c5200\c56900;\csgenericrgb\c0\c0\c0;\csgenericrgb\c11000\c0\c81000;
+\csgenericrgb\c77000\c10200\c8600;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab543
+\pard\tx543\pardeftab543\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 class\cf3  Image:\
+    \cf2 def\cf3  __init__(self, name,width=\cf4 100\cf3 , height=\cf4 100\cf3 ,transparent=False ):\
+        \cf2 if\cf3  transparent == True:\
+            self.pic = pygame.image.load(\cf5 "images//"\cf3 +name).convert_alpha()\
+        \cf2 else\cf3 :\
+            self.pic = pygame.image.load(\cf5 "images//"\cf3 +name).convert()\
+        self.pic = pygame.transform.scale(self.pic, (width, height))   \
+        self.x = \cf4 0\cf3 \
+        self.y = \cf4 0\cf3 \
+        self.width=width\
+        self.height=height\
+             \
+    \cf2 def\cf3  display(self):      \
+        screen.blit(self.pic,[self.x,self.y ])\
+    \cf2 def\cf3  get_width(self):\
+        \cf2 return\cf3  self.width\
+    \cf2 def\cf3  get_height(self)  :\
+        \cf2 return\cf3  self.height\
+    \cf2 def\cf3  setXY(self,x,y):\
+        self.x = x\
+        self.y = y\
+    \cf2 def\cf3  getRect(self):\
+        r = pygame.Rect(self.x,self.y,self.width,self.height)\
+        \cf2 return\cf3  r\
+    \cf2 def\cf3  resize(self,newW,newH):\
+        self.pic=pygame.transform.scale(self.pic, (newW, newH))\
+}
