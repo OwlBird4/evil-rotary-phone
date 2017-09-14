@@ -87,6 +87,8 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0,0,255)
 
+shipsremain = 8
+
 
 #initialize some variables
 reps=0
@@ -97,6 +99,7 @@ run_once_3=False
 level = 0
 score = 0
 gameOver = False
+showLaser = False
 pygame.display.set_caption("haxxor")
 
 #----------------------------------------------------------------------
@@ -118,6 +121,12 @@ alien_ship =Image("alien_small.png",50,50,True);
 space_back = Image("Spaceimage.jpg",screenWidth,screenHeight,True);
 alien_ship2 =Image("alien_small.png",50,50,True);
 alien_ship3 =Image("alien_small.png",50,50,True);
+laser_bullet =Image("laser_fire_beam.png",25,25,True);
+alien_ship4 =Image("alien_small.png",50,50,True);
+alien_ship5 =Image("alien_small.png",50,50,True);
+alien_ship6 =Image("alien_small.png",50,50,True);
+alien_ship7 =Image("alien_small.png",50,50,True);
+alien_ship8 =Image("alien_small.png",50,50,True);
 
 while gameOver == False :
     pygame.display.update()
@@ -172,16 +181,85 @@ while gameOver == False :
 #-----------------#LEVEL 1 CODE
     
     if level == 1:
+
         space_back.display()
         if run_once_2 == False :
             alien_ship.x = 900
             alien_ship.y = 468
             alien_ship2.x = 800
             alien_ship2.y = 468
+            alien_ship3.x = 700
+            alien_ship3.y = 468
+            alien_ship4.x = 600
+            alien_ship4.y = 468
+            alien_ship5.x = 900
+            alien_ship5.y = 518
+            alien_ship6.x = 800
+            alien_ship6.y = 518
+            alien_ship7.x = 700
+            alien_ship7.y = 518
+            alien_ship8.x = 600
+            alien_ship8.y = 518
             run_once_2 = True
         ship_fighter.display()
         alien_ship.display()
         alien_ship2.display()
+        alien_ship3.display()
+        alien_ship4.display()
+        alien_ship5.display()
+        alien_ship6.display()
+        alien_ship7.display()
+        alien_ship8.display()
+
+        text = myFont24.render("Ships That Remain:"+str(shipsremain),True,WHITE)
+        screen.blit(text,[600,0])
+
+        if showLaser == True:
+            laser_bullet.display()
+            laser_bullet.y+=5
+
+        if imagesCollide(laser_bullet,alien_ship) :
+            alien_ship.x = 3100
+            alien_ship.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship2) :
+            alien_ship2.x = 3100
+            alien_ship2.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship3) :
+            alien_ship3.x = 3100
+            alien_ship3.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship4) :
+            alien_ship4.x = 3100
+            alien_ship4.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship5) :
+            alien_ship5.x = 3100
+            alien_ship5.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship6) :
+            alien_ship6.x = 3100
+            alien_ship6.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship7) :
+            alien_ship7.x = 3100
+            alien_ship7.y = 3100
+            shipsremain -= 1
+
+        if imagesCollide(laser_bullet,alien_ship8) :
+            alien_ship8.x = 3100
+            alien_ship8.y = 3100
+            shipsremain -= 1
+            
+
+            
 
         
         
@@ -236,12 +314,50 @@ while gameOver == False :
         if keys_pressed[pygame.K_LEFT]:
             alien_ship2.x-=5
 
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship3.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship3.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship4.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship4.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship5.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship5.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship6.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship6.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship7.x+=5
+            alien_ship8.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship7.x-=5
+            alien_ship8.x-=5
+
+
+        if keys_pressed[pygame.K_SPACE]:
+            showLaser = True
+            laser_bullet.x = ship_fighter.x
+            laser_bullet.y = ship_fighter.y
+
     
             
             
         
             
-                
+
   
 
         if keys_pressed[pygame.K_x]:
