@@ -1,7 +1,11 @@
 import pygame,sys,random,time
 import math
 import time
-
+#import moviepy
+#from moviepy.editor import *
+#import os
+#import imageio
+#imageio.plugins.ffmpeg.download()
          
 class Image:
     def __init__(self, name,width=100, height=100,transparent=False ):
@@ -97,6 +101,7 @@ jumpmode=False
 run_once=False
 run_once_2=False
 run_once_3=False
+run_once_4=False
 level = 0
 score = 0
 gameOver = False
@@ -156,6 +161,18 @@ while gameOver == False :
         mario_standing.y = 600-mario_standing.height
     
     if level == 0 :
+#        if run_once_4 == False :
+            # Video Code
+#            os.environ["SDL_VIDEO_CENTERED"] = "1"
+#            clip = VideoFileClip('test.mp4')
+#            clip.preview()
+#            screenWidth = 1150
+#            screenHeight =  600
+#            screen = pygame.display.set_mode([screenWidth,screenHeight])
+#            pygame.init()
+#            run_once_4 = True
+
+
         # Intro Screen Code
         galaga_icon_locked.x=900
         galaga_icon_locked.y=468
@@ -503,8 +520,3 @@ while gameOver == False :
 
 pygame.quit() #do not move 
 sys.exit() #do not move 
-
-
- 
-
- 
