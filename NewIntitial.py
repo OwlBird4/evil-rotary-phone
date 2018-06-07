@@ -87,6 +87,9 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0,0,255)
 
+shipsremain = 8
+outofbounds = 300
+
 
 #initialize some variables
 reps=0
@@ -97,6 +100,7 @@ run_once_3=False
 level = 0
 score = 0
 gameOver = False
+showLaser = False
 pygame.display.set_caption("haxxor")
 
 #----------------------------------------------------------------------
@@ -118,6 +122,21 @@ alien_ship =Image("alien_small.png",50,50,True);
 space_back = Image("Spaceimage.jpg",screenWidth,screenHeight,True);
 alien_ship2 =Image("alien_small.png",50,50,True);
 alien_ship3 =Image("alien_small.png",50,50,True);
+laser_bullet =Image("laser_fire_beam.png",25,25,True);
+alien_ship4 =Image("alien_small.png",50,50,True);
+alien_ship5 =Image("alien_small.png",50,50,True);
+alien_ship6 =Image("alien_small.png",50,50,True);
+alien_ship7 =Image("alien_small.png",50,50,True);
+alien_ship8 =Image("alien_small.png",50,50,True);
+galaga_icon_locked2 = Image("galaga_icon_locked.png",150,150,True);
+mario_standing2 = Image("mario_standing.png",75,75,True);
+
+
+# load sounds
+laser = pygame.mixer.Sound("Sounds//BLOWBACK.WAV")
+galagamusic = pygame.mixer.Sound("Sounds//galagamusic.wav")
+applause = pygame.mixer.Sound("Sounds//APPLAUSE.wav")
+explosion = pygame.mixer.Sound("Sounds//UNKNOWN.WAV")
 
 while gameOver == False :
     pygame.display.update()
@@ -142,9 +161,16 @@ while gameOver == False :
         Windows_10_desktop.display()
         galaga_icon_locked.display()
         text = myFont48.render("Welcome Haxxor!",True,RED)
+        text = myFont24.render("Created By Pleasant Ballenger and Michael Shipman",True,BLACK)
         screen.blit(text,[300,100])   
         mario_standing.display()
         pygame.display.update()
+
+        if imagesCollide(mario_standing,galaga_icon_locked):
+            text = myFont24.render("Press Enter!",True,WHITE)
+            screen.blit(text,[900,368])
+
+                    
         
         if run_once==False :
             enter = False
@@ -168,20 +194,165 @@ while gameOver == False :
 
         enter = False
 
-
 #-----------------#LEVEL 1 CODE
     
     if level == 1:
+        
         space_back.display()
         if run_once_2 == False :
             alien_ship.x = 900
             alien_ship.y = 468
             alien_ship2.x = 800
             alien_ship2.y = 468
+            alien_ship3.x = 700
+            alien_ship3.y = 468
+            alien_ship4.x = 600
+            alien_ship4.y = 468
+            alien_ship5.x = 900
+            alien_ship5.y = 518
+            alien_ship6.x = 800
+            alien_ship6.y = 518
+            alien_ship7.x = 700
+            alien_ship7.y = 518
+            alien_ship8.x = 600
+            alien_ship8.y = 518
             run_once_2 = True
         ship_fighter.display()
         alien_ship.display()
         alien_ship2.display()
+        alien_ship3.display()
+        alien_ship4.display()
+        alien_ship5.display()
+        alien_ship6.display()
+        alien_ship7.display()
+        alien_ship8.display()
+
+
+        text = myFont24.render("Ships That Remain:"+str(shipsremain),True,WHITE)
+        screen.blit(text,[600,0])
+
+        text = myFont24.render("Out of Bounds Timer:"+str(outofbounds),True,RED)
+        screen.blit(text,[200,0])
+
+        if showLaser == True:
+            laser_bullet.display()
+            laser_bullet.y+=12
+            
+        if imagesCollide(laser_bullet,alien_ship) :
+            alien_ship.x = 200
+            alien_ship.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship2) :
+            alien_ship2.x = 200
+            alien_ship2.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship3) :
+            alien_ship3.x = 200
+            alien_ship3.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship4) :
+            alien_ship4.x = 200
+            alien_ship4.y = 10000
+            shipsrem -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship5) :
+            alien_ship5.x = 200
+            alien_ship5.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship6) :
+            alien_ship6.x = 200
+            alien_ship6.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship7) :
+            alien_ship7.x = 200
+            alien_ship7.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if imagesCollide(laser_bullet,alien_ship8) :
+            alien_ship8.x = 200
+            alien_ship8.y = 10000
+            shipsremain -= 1
+            explosion.play()
+
+        if alien_ship.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship2.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship3.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship4.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship5.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship6.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship7.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship8.x > 1150:
+            outofbounds -= 1
+
+        if alien_ship.x < 0:
+            outofbounds -= 1
+
+        if alien_ship2.x < 0:
+            outofbounds -= 1
+
+        if alien_ship3.x < 0:
+            outofbounds -= 1
+
+        if alien_ship4.x < 0:
+            outofbounds -= 1
+
+        if alien_ship5.x < 0:
+            outofbounds -= 1
+
+        if alien_ship6.x < 0:
+            outofbounds -= 1
+
+        if alien_ship7.x < 0:
+            outofbounds -= 1
+
+        if alien_ship8.x < 0:
+            outofbounds -= 1
+
+        if ship_fighter.x > 1150:
+            ship_fighter.x = 1
+            ship_fighter.y = 1
+
+        if ship_fighter.x < 0:
+            ship_fighter.x = 1100
+            ship_fighter.y = 1
+
+
+
+
+        if shipsremain <1 and level == 1:
+            level=2
+
+        if outofbounds <1 and level == 1:
+            level=2
+            
+
+            
 
         
         
@@ -189,8 +360,47 @@ while gameOver == False :
 #-----------------#LEVEL 2 CODE
     
     if level == 2:
-        screen.fill(RED)
-        mario_standing.display()
+        # Intro Screen Code
+        galaga_icon_locked2.x=900
+        galaga_icon_locked2.y=468
+        Windows_10_desktop.display()
+        galaga_icon_locked2.display()
+        text = myFont48.render("Welcome Haxxor!",True,RED)
+        text = myFont24.render("Created By Pleasant Ballenger and Michael Shipman",True,BLACK)
+        screen.blit(text,[300,100])   
+        mario_standing2.display()
+        pygame.display.update()
+        
+        if run_once==False :
+            enter = False
+            run_once = True
+
+
+#-----------------------#LEVEL 3 CODE
+
+
+
+
+
+
+
+
+
+
+#-----------------------#LEVEL 4 CODE
+
+
+
+
+
+
+#----------------------------#BOSS LEVEL CODE---------------------------------------
+
+
+
+
+
+
   
         
    
@@ -236,12 +446,52 @@ while gameOver == False :
         if keys_pressed[pygame.K_LEFT]:
             alien_ship2.x-=5
 
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship3.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship3.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship4.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship4.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship5.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship5.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship6.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship6.x-=5
+
+        if keys_pressed[pygame.K_RIGHT]:
+            alien_ship7.x+=5
+            alien_ship8.x+=5
+
+        if keys_pressed[pygame.K_LEFT]:
+            alien_ship7.x-=5
+            alien_ship8.x-=5
+
+        if keys_pressed[pygame.K_SPACE] and level == 1:
+            showLaser = True
+            laser_bullet.x = ship_fighter.x
+            laser_bullet.y = ship_fighter.y
+            laser.play()
+            
+            
+
     
             
             
         
             
-                
+
   
 
         if keys_pressed[pygame.K_x]:
